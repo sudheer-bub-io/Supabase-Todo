@@ -39,13 +39,17 @@
 import { ref, onMounted } from 'vue';
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
+console.log(user)
 
 const newTodo = ref('');
 const description = ref('');
 const todos = ref([]);
 
 const fetchTodos = async () => {
-  const { data, error } = await supabase.from('todos').select('*');
+  let { data, error } = await supabase
+  .from("todos")
+  .select("*")
+  .eq("user_id", user.value.id);
   if (error) {
     console.error('Error fetching todos:', error.message);
   } else {
@@ -95,9 +99,18 @@ const toggleTodoCompletion = async (todo) => {
   }
 };
 
-const signOut = () => {
-  console.log("Signing out...");
+const signOut = async () => {
+  try {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+    user.value = null;
+  } catch (error) {
+    alert(error.message);
+  } finally {
+    navigateTo("/login");
+  }
 };
+
 </script>
 
 <style scoped>
