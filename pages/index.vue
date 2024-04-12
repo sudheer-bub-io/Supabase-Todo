@@ -33,11 +33,14 @@
       </div>
     </div>
   </div>
+  <button @click="chatBot" class="bg-slate-600 p-2 rounded-md text-gray-200 hover:text-gray-300 focus:outline-none">
+    Go to ChatBot
+  </button>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { getChatCompletion } from '@/utils/openai'; // Import the AI integration function
+import { getChatCompletion } from '@/utils/openai'; 
 
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
@@ -59,6 +62,11 @@ const fetchTodos = async () => {
 };
 await fetchTodos()
 onMounted(fetchTodos);
+
+const chatBot =()=>{
+  console.log("I got clicked")
+  navigateTo("/login");
+}
 
 const addTodo = async () => {
   if (newTodo.value.trim() !== '') {

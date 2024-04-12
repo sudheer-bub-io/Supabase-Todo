@@ -6,11 +6,11 @@ export default defineNuxtConfig({
     // Experimental support for auto loading (see note):
     autoImport: true
   },
-  runtimeConfig: {
+  publicRuntimeConfig: {
+    apiKey: process.env.OPENAI_API_KEY
+  },
+  privateRuntimeConfig: {
     apiSecret: '', // can be overridden by NUXT_API_SECRET environment variable
-    public: {
-      apiKey: process.env.OPENAI_API_KEY, // can be overridden by NUXT_PUBLIC_API_BASE environment variable
-    }
   },
   supabase: {
     url: process.env.SUPABASE_URL,
