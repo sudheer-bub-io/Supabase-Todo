@@ -28,7 +28,7 @@
     <div class=" py-4 px-6 flex justify-between items-center">
       <div>
         <button @click="signOut" class="bg-slate-600 p-2 rounded-md text-gray-200 hover:text-gray-300 focus:outline-none">
-          Sign Out
+          Sign Outhhs
         </button>
       </div>
     </div>
