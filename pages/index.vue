@@ -65,7 +65,7 @@ onMounted(fetchTodos);
 
 const chatBot =()=>{
   console.log("I got clicked")
-  navigateTo("/login");
+  navigateTo("/chat");
 }
 
 const addTodo = async () => {
